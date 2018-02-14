@@ -1,0 +1,23 @@
+##Datos de registro de enfermos del 2000 al 2010 semestral
+#350,358,367,380,388,402,415,432,450, 
+#NA,NA,NA,NA,367,342,324,315,310,298
+
+#Meterlo a vector y graficarlo
+#declarar y graficar esta serie
+#imputar datos faltantes ?
+#Graficar la nueva serie con todos los datos
+#graficar la ST
+#EuStockMarkets con la funcion plot... que observan?
+#Graficar EuStockMarkets con la funcion:
+#plot.ts(EuStockMarkets, col=1:4)
+
+x <- c(350,358,367,367,380,388,402,415,432,450,NA,NA,NA,NA,367,342,324,315,310,298,350) #Vector
+plot(x) #grafica del vector
+serie <-ts(x, frequency = 2, start = (2000), end = (2010)) #declarado serie
+plot(serie) #graficando serie
+serie[11:14] <- mean(serie,na.rm =T) #Sacar media, intrudiciendo en los lugares del 11 al 14
+serie #imprimiendo los valores con la media ya dentro
+plot(serie) #nueva grafica
+
+plot(EuStockMarkets) #grafica de una serie multiple
+ts.plot(EuStockMarkets, col= 1:4) #segundo arguntos son los colores, se grafican en una sola pudiendo hacer una mejor comparacion
