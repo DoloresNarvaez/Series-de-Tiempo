@@ -1,0 +1,98 @@
+##Funcion descompose para lograr obtener los componentes
+#El modelo multiplicativo se aplica cuando exista una variacion mas
+#proporcional en el patron estacional o alrededor de la tendencia
+#con series economicas el modelo multiplicativo es mas comun
+#Otro uso del modelo multiplicativo es transformar primero los datos
+#hasta que la variacion de la serie sea estable en el tiem´po
+#Para descompone runa serie de tiempose utilizan diversos metodos
+#Por ejemplo la funcion descompose() en R, logra obtener los 3 componenetes
+#a traves d ela funcion calcula el componente de tendencia utilizando medias
+#moviles, la estacionalidad son promedios de los indices de estacionalidad
+#que se obtienen al destacionilizar la serie por el modelo elegido.
+#por ultimo el componente aleatoria se obtiene elimando la tendencia y
+#estacionalidad de la serie temporal
+#El otro metodo de descomposicion es la funcion stl() que esta basada en 
+#la regresiom LOESS y consisite una secuencia de dos aplicaciones iteradas de 
+#regresion Loess. Para aplicar este metodo se debe especificar
+#una frecuencia de muestreo relacionada con el periodo del componente estacional
+install.packages("fpp") #bajamos la paqueteria
+install.packages("forecast")
+require(fpp)#la mandamos llamar a nuestra secion de R
+require(forecast)
+deso <- read.csv("C://Users//USUARIO//Desktop//enooe1.csv")
+tsdeso <- ts(deso, frequency = 4, start=2005)
+tsdeso0 <-ts(deso[1:52,], frequency = 4, start=2005)
+#tsdeso1 <- ts(as.vector())
+a0 <- decompose (tsdeso0)
+names (a0)
+a1 <- stl(tsdeso0, s.window=4)
+names(a1)
+a1$time.series
+x11()
+plot(tsdeso0, col="blue", main="Desocupacion trimestral", ylab="Tasa de desocupados", xlab="anios")
+lines(a1$time.series[,2], col="red", ylab="tendencia")
+#la grafica muestra el componente tendencia en rojo 
+#y los datos originales en azul
+#la tendencia muestra movimeinto sobre toda la serie
+#ignorando la estacionilidad y pequeñas fluctuaciones aleatorias
+x11()
+plot(a1)
+
+######ESTACIONALIDAD#####
+#Ahora para ver la estacionalidad graficamente podriamos ver graficas
+#estacionaññes para esto hay una funcion que nos permite ver 
+#lo anterior se utiliza la funcion monthplot()
+x11()
+monthplot(a1$time.series[,"seasonal"], main="", ylab = "Seasonal")
+#Si el componente estacional es elimando de la serie de tiempo se le 
+#llama ajuste estacional par aun modelo aditivo el ajuste estacional
+#se da por yt-St, para el modelo multiplicativo se define yt/St
+
+###Ajuste estacional#### (desestacionlizar)
+#Para hacer un ajuste estacional y desestacionalizar la serie se utiliza
+#la funcion seasadj()
+#Si la estacionalidad no es un elemento prioritario en la serie
+#entonces eliminar la estacionalidad puede resultar benefico para el analisis
+#por ejemplo, los datos de desempleo tiene un ajuste en un periodo en 
+#especifico (diciembre un alza importante por las festividades), sin embargo,
+#lo que mas nos interesa es saber el comportamiento de los datos en las 
+#en consecuencia, los datos de empleo (y muchas otras series economicas)
+#generalmente se ajustan estacionalmente
+x11()
+plot(tsdeso0, col="brown", main="Tasa de desocupacion", xlab="anios")
+lines(seasadj(a1), col="black", ylab="ajuste estacional")
+#en esta grafica se puede observar que se mantiene la tendencia sin embargo
+#la estacionalidad se eliminan los picos en periodos constantes
+#Las series destacionilizadas mantienen el componente tendencia y aleatorio
+#por lo que son series con algunos cambios importantes que resultan confusos
+#por lo que es importante ser cuidadosos con estos analisis
+
+
+#####EJERCICIO
+#Escoger una serie de tiempo y realizar lo siguiente
+#1)Descomponer la serie con la funcion stl y plateeen esta descomposicion
+#con uno de los datos que arroje
+#2)Graficar el componente estacional y el componente tendencia (2graficas)... en estas graficas
+#usar la funcion lines
+#3)Eliminen el componente estacional y grafiquenlo.. comprueben en una 
+#ecuacion la formula del modelo aditivo elimando estacionalidad
+
+tta <- read.csv("C://Users//USUARIO//Desktop/trabajoasalariado.csv")
+tstta <- ts(tta[1:52,], frequency = 4, start=2005)
+b0 <- decompose (tstta)
+names (b0)
+b1 <- stl(tstta, s.window=4)
+names(b1)
+b1$time.series
+x11()
+plot(tstta, col="blue", main="Trabajo asalariado", ylab="Tasa de asalariados", xlab="anios")
+lines(b1$time.series[,2], col="red", ylab="tendencia")
+x11()
+plot(b1)
+x11()
+monthplot(b1$time.series[,"seasonal"], main="", ylab = "Seasonal")
+x11()
+monthplot(b1$time.series[,"trend"], main="", ylab = "Tendencia")
+x11()
+plot(tstta, col="brown", main="Tasa de trabajo asalariado", xlab="anios")
+lines(seasadj(b1), col="black", ylab="ajuste estacional")
