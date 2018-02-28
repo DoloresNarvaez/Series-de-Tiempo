@@ -1,0 +1,38 @@
+###MEDIAS MOVILES
+##Ejemplo, datos de crimenes de 1980-1989)
+
+install.packages("forecast")
+require (forecast)
+
+crim1 <- c(12632, 13607, 12160, 13335, 14553, 14654, 12791, 11923, 10225, 9847)
+tscrim <- ts(crim1, start= 1980)
+ma(tscrim, order=5)
+
+ma5crim <-c(NA, NA, 13257.4, 13661.8, 13498.6, 13451.2, 12829.2, 11888.0, NA, NA)
+macrim <- data.frame(crim1, ma5crim)
+
+#En el data frama en la segunda columna se tiene el promedio movil de orden 5 qu expone
+#un estimado de la tendencia, el primer valor es el promedio las primeras 5 observacionhes , el segundo valor 
+#corresponde a el promedio de los valores de 1981 a 1985 y asi sucesivamente, no existen valores
+#para los primeros dos años ni para los ultimos, debido a que no existen datos para estos valores
+#por ser un promedio moovil de orden 5, en la ecuacion expuesta
+#m=5 entonces k=2... m=2(k)+1
+
+#Orden 5
+plot(tscrim, main="Crimen en Mexico, orden 5", ylab="Millones de personas", xlab="Años")
+lines(ma(tscrim, 5), col="red")
+
+#Orden 3
+plot(tscrim, main="Crimen en Mexico, orden 3", ylab="Millones de personas", xlab="Años")
+lines(ma(tscrim, 3), col="red")
+
+#Orden 4
+plot(tscrim, main="Crimen en Mexico, orden 4", ylab="Millones de personas", xlab="Años")
+lines(ma(tscrim, 4), col="red")
+
+#Como se puede oberservar en las graficas de tendencia se observa de color rojo una serie mas suavizada
+#el principal movimiento se detecta en todos los peueños cambios. El promedio movil no estima la
+#tendencia al incio y al final de la serie, despues hay metodos que si permiten estimar
+#el incio y el final de la tendencia. 
+#El orden de promedios moviles determina el suavizado de la tendencia, en general en orden grande
+#significa una curva mas suavizada
