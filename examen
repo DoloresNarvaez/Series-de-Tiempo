@@ -1,0 +1,49 @@
+#Desarrollar un script en R
+
+#genera 5 series de tiempo con nombre multiple
+#los rangos de estas series son: serie 1) de 15 a 35
+#2) de 100 a 200, 3) 29 a 49 y 4) 42 a 162
+#las series deben tener 250 mensuales e inician en el tercer mes del 1990
+#hacer estos datos como data frame
+#generar cada una de las columnas en series de tiempo
+#1.1) de la serie 1, 2 series de tiempo y dividenñas (con funcion en r)
+#en 2) series que vayan de 1990 a 2003 y de 1998 a 2006 y despues grafiquenlas
+#1.2)dividir la serie 3 y 4 a traves de los corchetes desde la observacion 150 a la 250
+#1.3) de 2 series(la que sea) obtener y generar 2 data frame de la 
+#tendencia y estacionilidad
+
+install.packages("fpp")
+install.packages("forecast")
+require(fpp)
+require(forecast)
+
+mult1<- sample(15:35, 250, replace=T)
+mult2<- sample(100:200, 250, replace=T)
+mult3<- sample(29:49, 250, replace=T)
+mult4<- sample(42:162, 250, replace=T)
+
+base <-data.frame(mult1,mult2,mult3,mult4)
+
+multts1 <- ts(mult1, frequency=12, start=c(1990,3))
+multts2 <- ts(mult2, frequency=12, start=c(1990,3))
+multts3 <- ts(mult3, frequency=12, start=c(1990,3))
+multts4 <- ts(mult4, frequency=12, start=c(1990,3))
+
+mult1descom<-decompose(multts1)
+mult1descom
+
+miltdiv <- window(multts1, start=c(1990,3), end= 2003)
+miltdiv2 <- window(multts2, start=1998, end= 2006)
+plot(miltdiv, col=2, main="Descomposicion")
+plot(miltdiv2, col=3, main="Descomposicion")
+
+multts3
+desc1 <-ts(multts3[150:250], frequency = 12, start=1990)
+desc2 <-ts(multts4[150:250], frequency = 12, start=1990)
+
+names(mult1)
+desc3<-stl(multts1, s.window = 12)
+desc4<-stl(multts2, s.window = 12)
+
+base2 <- data.frame(desc3$time.series[,2], desc3$time.series[,3])
+base3 <- data.frame(desc4$time.series[,2], desc4$time.series[,3])
