@@ -1,0 +1,9 @@
+netflix <- read.csv("C://Users//USUARIO//Desktop//netflix.csv")
+bimbo <- read.csv("C://Users//USUARIO//Desktop//bimbo.csv")
+invex <- read.csv("C://Users//USUARIO//Desktop//invex.csv")
+cemex <- read.csv("C://Users//USUARIO//Desktop//cemex.csv")
+banorte <- read.csv("C://Users//USUARIO//Desktop//banorte.csv")
+televisa <- read.csv("C://Users//USUARIO//Desktop//televisa.csv")
+
+#plot
+#lines y mandas llamar todas las series!
