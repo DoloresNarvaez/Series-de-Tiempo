@@ -1,0 +1,23 @@
+accidentes <- read.csv("C://Users//USUARIO//Desktop//INEGI_Exporta_20180312162218.csv")
+
+#MODO 1
+acci<-rbind(accidentes[6:17,]) #leer los renglones empenzando desde el dato 4 y todas las columnas
+a<-rbind(acci[,2])
+b<-rbind(acci[,3])
+c<-rbind(acci[,4])
+d<-rbind(acci[,5])
+e<-rbind(acci[,6])
+g<-rbind(acci[,7])
+h<-rbind(acci[,8])
+i<-rbind(acci[,9])
+j<-rbind(acci[,10])
+k<-rbind(acci[,11])
+l<-rbind(acci[,12])
+m<-rbind(acci[,13])
+n<-rbind(acci[,14])
+p<-rbind(acci[,15])
+q<-rbind(acci[,16])
+r<-rbind(acci[,17])
+
+
+#MODO2
