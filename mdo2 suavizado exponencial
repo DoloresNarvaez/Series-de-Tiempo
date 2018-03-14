@@ -1,0 +1,33 @@
+#MODO2
+
+acci<-read.csv("C://Users//USUARIO//Desktop//accidentes.csv")
+View(acci)
+acci<-acci[5:16,-1]
+acci
+#elimando columnas
+trs<-t(t(acci)) #para convertir en caracter sin modificar los años de nuestros datos
+ctrs<-c(trs)#genera un array bonito
+accts<-ts(ctrs,frequency = 12, start=1997)
+accts
+
+install.packages("fpp")
+require (fpp)
+
+
+##Suavizado exponencial simpre(SES)
+x11()
+plot(accts)
+mod1<-ses(accts, alpha=.1, h=12)
+mod2<-ses(accts, alpha=.5, h=12)
+mod3<-ses(accts, alpha=.9, h=12)
+
+names(mod1)
+
+x11()
+plot(mod1, ylab="accidentes", xlab="año",main="numero de accidentes", type="o")
+lines(mod1$mean,col="brown", type="o")
+lines(mod2$mean,col="pink", type="o")
+lines(mod3$mean,col="blue", type="o")
+legend("topleft",lty=1,col=c("black","brown","pink","blue"),
+       c("datos originales",expression(alpha==.1),expression(alpha==.5), 
+         expression(alpha==.9)), pch=1)
