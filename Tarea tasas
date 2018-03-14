@@ -1,0 +1,165 @@
+#TAREA
+#DURANGO
+
+install.packages("foreign")
+require(foreign)
+
+#DESOCUPACION
+#CLASE3: Poblacion buscando trabajo
+
+#Trimestres del 2015
+
+#1
+sdemt115<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2015//SDEMT115.dbf"))
+desocupados115 <- subset(sdemt115,ENT==10 & CLASE3==6)
+pea115 <- subset(sdemt115,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea115 <-nrow(pea115)
+numerodeso115<-nrow(desocupados115)                  
+td115 <- (numerodeso115/numeropea115)*100
+td115
+
+#2
+sdemt215<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2015//SDEMT215.dbf"))
+desocupados215 <- subset(sdemt215,ENT==10 & CLASE3==6)
+pea215 <- subset(sdemt215,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea215 <-nrow(pea215)
+numerodeso215<-nrow(desocupados215)                  
+td215 <- (numerodeso215/numeropea215)*100
+td215
+
+#3
+sdemt315<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2015//SDEMT315.dbf"))
+desocupados315 <- subset(sdemt315,ENT==10 & CLASE3==6)
+pea315 <- subset(sdemt315,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea315 <-nrow(pea315)
+numerodeso315<-nrow(desocupados315)                  
+td315 <- (numerodeso315/numeropea315)*100
+td315
+
+#4
+sdemt415<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2015//SDEMT415.dbf"))
+desocupados415 <- subset(sdemt415,ENT==10 & CLASE3==6)
+pea415 <- subset(sdemt415,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea415 <-nrow(pea415)
+numerodeso415<-nrow(desocupados415)                  
+td415 <- (numerodeso315/numeropea315)*100
+td415
+
+
+
+
+#Trimestres del 2005
+
+#1
+sdemt105<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2005//sdemt105.dbf"))
+desocupados105 <- subset(sdemt105,ENT==10 & CLASE3==6)
+pea105 <- subset(sdemt105,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea105 <-nrow(pea105)
+numerodeso105<-nrow(desocupados105)                  
+td105 <- (numerodeso105/numeropea105)*100
+td105
+
+#2
+sdemt205<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2005//sdemt205.dbf"))
+desocupados205 <- subset(sdemt205,ENT==10 & CLASE3==6)
+pea205 <- subset(sdemt205,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea205 <-nrow(pea205)
+numerodeso205<-nrow(desocupados205)                  
+td205 <- (numerodeso205/numeropea205)*100
+td205
+
+#3
+sdemt305<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2005//sdemt305.dbf"))
+desocupados305 <- subset(sdemt305,ENT==10 & CLASE3==6)
+pea305 <- subset(sdemt305,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea305 <-nrow(pea305)
+numerodeso305<-nrow(desocupados305)                  
+td305 <- (numerodeso305/numeropea305)*100
+td305
+
+#4
+sdemt405<- data.frame(read.dbf("C://Users//Alumno.SALAE-5//Documents//SOCIO2005//sdemt405.dbf"))
+desocupados405 <- subset(sdemt405,ENT==10 & CLASE3==6)
+pea405 <- subset(sdemt405,ENT==10 & as.numeric(EDA)>=16 & as.numeric(EDA)<=66)
+numeropea405 <-nrow(pea405)
+numerodeso405<-nrow(desocupados405)                  
+td405 <- (numerodeso405/numeropea405)*100
+td405
+
+
+
+
+
+#ASALARIADOS
+# MH_COL=2, trabajadores subordinados
+# CLASE2 = Clasificacion de la poblacion en ocupada y no ocupada
+#Poblacion ocupada
+
+#TRIMESTRES 2015
+
+#1
+asalariado115 <- subset(sdemt115,ENT==10 & MH_COL==2)
+pea115 <- subset(sdemt115,ENT==10 & CLASE2==1)
+numpea115 <-nrow(pea115)
+asalariados115 <-nrow(asalariado115)
+ta115 <- ((asalariados115/numpea115)*100)
+ta115
+
+#2
+asalariado215 <- subset(sdemt215,ENT==10 & MH_COL==2)
+pea215 <- subset(sdemt215,ENT==10 & CLASE2==1)
+numpea215 <-nrow(pea215)
+asalariados215 <-nrow(asalariado215)
+ta215 <- ((asalariados215/numpea215)*100)
+ta215
+
+#3
+asalariado315 <- subset(sdemt315,ENT==10 & MH_COL==2)
+pea315 <- subset(sdemt315,ENT==10 & CLASE2==1)
+numpea315 <-nrow(pea315)
+asalariados315 <-nrow(asalariado315)
+ta315 <- ((asalariados315/numpea315)*100)
+ta315
+
+#4
+asalariado415 <- subset(sdemt415,ENT==10 & MH_COL==2)
+pea415 <- subset(sdemt415,ENT==10 & CLASE2==1)
+numpea415 <-nrow(pea415)
+asalariados415 <-nrow(asalariado415)
+ta415 <- ((asalariados415/numpea415)*100)
+ta415
+
+
+#TRIMESTRES 2005
+
+#1
+asalariado105 <- subset(sdemt105,ENT==10 & MH_COL==2)
+pea105 <- subset(sdemt105,ENT==10 & CLASE2==1)
+numpea105 <-nrow(pea105)
+asalariados105 <-nrow(asalariado105)
+ta105 <- ((asalariados105/numpea105)*100)
+ta105
+
+#2
+asalariado205 <- subset(sdemt205,ENT==10 & MH_COL==2)
+pea205 <- subset(sdemt205,ENT==10 & CLASE2==1)
+numpea205 <-nrow(pea205)
+asalariados205 <-nrow(asalariado205)
+ta205 <- ((asalariados205/numpea205)*100)
+ta205
+
+#3
+asalariado305 <- subset(sdemt305,ENT==10 & MH_COL==2)
+pea305 <- subset(sdemt305,ENT==10 & CLASE2==1)
+numpea305 <-nrow(pea305)
+asalariados305 <-nrow(asalariado305)
+ta305 <- ((asalariados305/numpea305)*100)
+ta305
+
+#4
+asalariado405 <- subset(sdemt405,ENT==10 & MH_COL==2)
+pea405 <- subset(sdemt405,ENT==10 & CLASE2==1)
+numpea405 <-nrow(pea405)
+asalariados405 <-nrow(asalariado405)
+ta405 <- ((asalariados405/numpea405)*100)
+ta405
