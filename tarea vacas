@@ -1,0 +1,11 @@
+#EJERCICIO
+
+#Elegir una st con tendencia y realizar 3 graficas aplicando todos los modelos
+  #Con valores ajustados
+  #Pronosticos
+  #Ajustados y pronosticos
+
+#Analizar y justificar con que modelo se queda
+  #SES, holt, h-exponencial, aditivo amortiguado, multi amortiguado
+
+#Esta misma serie la cortas 4 o 5 periodos antes de la ultima observacion y grafican ajustados y pronosticos
