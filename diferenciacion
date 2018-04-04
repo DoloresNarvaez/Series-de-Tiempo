@@ -1,0 +1,5 @@
+x11()
+plot(AirPassengers)
+
+x11()
+plot(diff (log(AirPassengers))) #logaritmo y diferenciacon
